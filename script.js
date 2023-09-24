@@ -38,17 +38,19 @@ function getCurrentTime() {
     12 hours = 360deg so 1 hrs = 360 / 12 = 30deg
 
     1 hrs = 30deg that means 60 min = 30deg so 1 min = 30 / 60 = 0.5 or 1/2 deg
+    1 min = 0.5deg, and 1 sec = 6deg, so 1 sec = 0.5 / 60 = 1/120 deg
 
-    so formula for hours is (hours * 30 + minutes / 2)
+    so formula for hours is (hours * 30 + minutes / 2 + seconds / 120)
+    so formula for minutes is (minutes * 6 + seconds / 10)
     ------------------------------------------------------- */
 
-    handHours.style.transform = `rotate(${currentHours * 30 + currentMinutes / 2}deg)`;
-    handMinutes.style.transform = `rotate(${currentMinutes * 6}deg)`;
+    handHours.style.transform = `rotate(${currentHours * 30 + currentMinutes / 2 + currentSeconds / 120}deg)`;
+    handMinutes.style.transform = `rotate(${currentMinutes * 6 + currentSeconds / 10}deg)`;
     handSeconds.style.transform = `rotate(${currentSeconds * 6}deg)`;
 }
 
-//call getCurrentTime function on page load
+// call getCurrentTime function on page load
 getCurrentTime();
 
-//call getCurrentTime to set clock hands every second
-setInterval(getCurrentTime, 1000);  //1000ms = 1s
+// call getCurrentTime to set clock hands every second
+setInterval(getCurrentTime, 1000); // 1000ms = 1s
